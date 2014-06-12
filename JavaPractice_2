@@ -1,0 +1,183 @@
+import javax.swing.JApplet;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Ex2 extends JApplet implements ActionListener {
+   // constant variables for status of game
+   final int WON = 0, LOST = 1, CONTINUE = 2; 
+   
+   // other variables used in program
+   boolean firstRoll = true;   // true if first roll
+   int sumOfDice = 0;          // sum of the dice
+   int myPoint = 0;   // point if no win/loss on first roll
+   int gameStatus = CONTINUE;  // game not over yet
+
+   // graphical user interface components 
+   JLabel die1Label, die2Label, sumLabel, pointLabel, die3Label, bigLabel;
+   JTextField firstDie, secondDie,thirdDie, sum, point, bigpoint;
+   JButton roll, bigBut;
+   
+   
+   // setup graphical user interface components
+   public void init()
+   {
+      Container c = getContentPane();
+      c.setLayout( new FlowLayout() );
+          
+      die1Label = new JLabel( "Die 1" );
+      c.add( die1Label );
+      firstDie = new JTextField( 10 );
+      firstDie.setEditable( false );
+      c.add( firstDie );
+
+      die2Label = new JLabel( "Die 2" );
+      c.add( die2Label );
+      secondDie = new JTextField( 10 );
+      secondDie.setEditable( false );
+      c.add( secondDie );
+      
+      die3Label = new JLabel( "Die 3" );
+      c.add( die3Label );
+      thirdDie = new JTextField( 10 );
+      thirdDie.setEditable( false );
+      c.add( thirdDie );
+
+      sumLabel = new JLabel( "Sum is" );
+      c.add( sumLabel );
+      sum = new JTextField( 10 );
+      sum.setEditable( false );
+      c.add( sum );
+
+      pointLabel = new JLabel( "Point is" );
+      c.add( pointLabel );
+      point = new JTextField( 10 );
+      point.setEditable( false );
+      c.add( point );
+      
+      bigLabel = new JLabel( "Maximum Point is" );
+      c.add( bigLabel );
+      bigpoint = new JTextField( 10 );
+      bigpoint.setEditable( false );
+      c.add( bigpoint );
+      
+
+      roll = new JButton( "Roll Dice" );
+      roll.addActionListener( this );
+      c.add( roll );
+      
+      bigBut = new JButton( "Maximum" );
+      bigBut.addActionListener( this );
+      c.add( bigBut );
+      
+      // call method play when button is pressed
+      roll.addActionListener(new java.awt.event.ActionListener(){
+	   public void actionPerformed( ActionEvent e ){
+		   play();
+	   }});
+      
+      // call method maximum when button is pressed
+      bigBut.addActionListener(new java.awt.event.ActionListener(){
+	   public void actionPerformed( ActionEvent e ){
+		   max();
+	   }});
+   }
+   
+   
+   // process of getting maximum number
+   public void max()
+   {
+	   int die1, die2, die3, maxnumber, workSum;
+
+	      die1 = 1 + ( int ) ( Math.random() * 6 );
+	      die2 = 1 + ( int ) ( Math.random() * 6 );
+	      die3 = 1 + ( int ) ( Math.random() * 6 );
+	      workSum = die1 + die2 + die3;
+	      maxnumber = die1;
+	      if (maxnumber<=die2)
+	      {maxnumber=die2;}
+	      if (maxnumber<=die3)
+	      {maxnumber=die3;}
+
+	      firstDie.setText( Integer.toString( die1 ) );
+	      secondDie.setText( Integer.toString( die2 ) );
+	      thirdDie.setText( Integer.toString( die3 ) );
+	      bigpoint.setText( Integer.toString(maxnumber));
+	      sum.setText( Integer.toString( workSum ) );
+	      point.setText( "" );
+	      showStatus( "" );
+   }
+   
+   
+   // process one roll of the dice
+   public void play()
+   {
+      if ( firstRoll ) {             // first roll of the dice
+         sumOfDice = rollDice();        
+   
+         switch ( sumOfDice ) {
+            case 7: case 11:         // win on first roll
+               gameStatus = WON;
+               point.setText( "" );  // clear point text field
+               break;
+            case 2: case 3: case 12: // lose on first roll
+               gameStatus = LOST;
+               point.setText( "" );  // clear point text field
+               break;
+            default:                 // remember point
+               gameStatus = CONTINUE;
+               myPoint = sumOfDice;
+               point.setText( Integer.toString( myPoint ) );
+               firstRoll = false;
+               break;
+         }
+      }
+      else {
+         sumOfDice = rollDice();
+      
+         if ( sumOfDice == myPoint )    // win by making point
+            gameStatus = WON;
+         else
+            if ( sumOfDice == 7 )       // lose by rolling 7
+               gameStatus = LOST;
+      }
+
+      if ( gameStatus == CONTINUE )
+         showStatus( "Roll again." );
+      else {
+         if ( gameStatus == WON )
+            showStatus( "Player wins. " +
+               "Click Roll Dice to play again." );
+         else 
+            showStatus( "Player loses. " + 
+               "Click Roll Dice to play again." );
+         
+         firstRoll = true;
+      }
+   }
+   
+   // roll the dice
+   public int rollDice()
+   {
+      int die1, die2, die3, workSum;  
+
+      die1 = 1 + ( int ) ( Math.random() * 6 );
+      die2 = 1 + ( int ) ( Math.random() * 6 );
+      die3 = 1 + ( int ) ( Math.random() * 6 );
+      workSum = die1 + die2 + die3;
+
+      firstDie.setText( Integer.toString( die1 ) );
+      secondDie.setText( Integer.toString( die2 ) );
+      thirdDie.setText( Integer.toString( die3 ) );
+      sum.setText( Integer.toString( workSum ) );
+
+      return workSum;
+   }
+
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO 自動產生的方法 Stub
+	
+}
+}
