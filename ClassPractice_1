@@ -1,0 +1,50 @@
+import javax.swing.*;
+public class ex1 {
+
+	public static void main(String[] args) {
+		String option,continute="",double1,double2; 
+		Double sum=0.00,dou1=0.00,dou2=0.00;
+		int op=0;
+		
+		while (!continute.equals("n"))
+		{
+			//運算選項
+			option = JOptionPane.showInputDialog(null, "請輸入選項\n"+
+			"(1)加"+"(2)減"+"(3)乘"+"(4)除"+"(5)次方", "");
+			op = Integer.parseInt(option);
+			//運算數字1
+			double1 = JOptionPane.showInputDialog(null, "請輸入第一個數字", "");
+			dou1 = Double.parseDouble(double1) ;
+			//運算數字2
+			double2 = JOptionPane.showInputDialog(null, "請輸入第二個數字", "");
+			dou2 = Double.parseDouble(double2) ;
+			//運算選項switch
+			switch(op)
+			{
+			case 1:
+				sum = dou1+dou2;
+				break;
+				
+			case 2:
+				sum = dou1-dou2;
+				break;
+				
+			case 3:
+				sum = dou1*dou2;
+				break;
+				
+			case 4:
+				sum = dou1/dou2;
+				break;
+				
+			case 5:
+				sum = Math.pow(dou1, dou2);
+				break;
+			}
+			JOptionPane.showMessageDialog(null, "正確答案是"+sum,"答案", JOptionPane.INFORMATION_MESSAGE);
+			continute = JOptionPane.showInputDialog(null, "輸入y繼續\n"+"輸入n結束\n","");
+		}
+		System.exit(0);
+	}	
+	
+}
