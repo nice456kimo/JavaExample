@@ -177,7 +177,5 @@ public class Ex2 extends JApplet implements ActionListener {
 
 @Override
 public void actionPerformed(ActionEvent e) {
-	// TODO 自動產生的方法 Stub
-	
 }
 }
