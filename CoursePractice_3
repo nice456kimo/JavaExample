@@ -1,0 +1,363 @@
+package calculator;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Ex3 extends JFrame {
+
+	double op1 = 0d, op2 = 0d;
+	double result = 0d;
+	char action;
+	boolean b = false;
+	boolean pressequal = false;
+
+	public Ex3() {
+		makeUI();
+	}
+
+	private void makeUI() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(400, 400);
+
+		b0 = new JButton("0");
+		b1 = new JButton("1");
+		b2 = new JButton("2");
+		b3 = new JButton("3");
+		b4 = new JButton("4");
+		b5 = new JButton("5");
+		b6 = new JButton("6");
+		b7 = new JButton("7");
+		b8 = new JButton("8");
+		b9 = new JButton("9");
+		bDot = new JButton(".");
+		bMul = new JButton("*");
+		bDiv = new JButton("/");
+		bPlus = new JButton("+");
+		bMinus = new JButton("-");
+		bEq = new JButton("=");
+
+		t = new JTextField(12);
+		t.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		t.setHorizontalAlignment(JTextField.RIGHT);
+
+		numpad = new JPanel();
+		display = new JPanel();
+
+		numpad.add(b7);
+		numpad.add(b8);
+		numpad.add(b9);
+		numpad.add(bMul);
+		numpad.add(b4);
+		numpad.add(b5);
+		numpad.add(b6);
+		numpad.add(bDiv);
+		numpad.add(b1);
+		numpad.add(b2);
+		numpad.add(b3);
+		numpad.add(bMinus);
+		numpad.add(bDot);
+		numpad.add(b0);
+		numpad.add(bEq);
+		numpad.add(bPlus);
+
+		numpad.setLayout(new GridLayout(4, 5, 5, 4));
+
+		display.add(t);
+		add(display, BorderLayout.NORTH);
+		add(numpad, BorderLayout.CENTER);
+
+		t.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				typeOnt(e);
+			}
+		});
+
+		b0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				b0pressed(e);
+			}
+		});
+
+		b1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				b1pressed(e);
+			}
+		});
+
+		b2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				b2pressed(e);
+			}
+		});
+
+		b3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				b3pressed(e);
+			}
+		});
+
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				b4pressed(e);
+			}
+		});
+
+		b5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				b5pressed(e);
+			}
+		});
+
+		b6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				b6pressed(e);
+			}
+		});
+
+		b7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				b7pressed(e);
+			}
+		});
+
+		b8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				b8pressed(e);
+			}
+		});
+
+		b9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				b9pressed(e);
+			}
+		});
+
+		bDot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bDotpressed(e);
+			}
+		});
+
+		bPlus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bPlusPressed(e);
+			}
+		});
+
+		bMinus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bMinusPressed(e);
+			}
+		});
+
+		bMul.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bMulPressed(e);
+			}
+		});
+
+		bDiv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bDivPressed(e);
+			}
+		});
+
+		bEq.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bEqpressed(e);
+			}
+		});
+
+	}
+
+	void typeOnt(KeyEvent e) {
+		e.consume();
+	}
+
+	void b0pressed(ActionEvent e) {
+		if (b) {
+			t.setText(null);
+			b = false;
+			t.setText(t.getText() + "0");
+		} else {
+			t.setText(t.getText() + "0");
+		}
+	}
+
+	void b1pressed(ActionEvent e) {
+		if (b) {
+			t.setText(null);
+			b = false;
+			t.setText(t.getText() + "1");
+		} else {
+			t.setText(t.getText() + "1");
+		}
+	}
+
+	void b2pressed(ActionEvent e) {
+		if (b) {
+			t.setText(null);
+			b = false;
+			t.setText(t.getText() + "2");
+		} else {
+			t.setText(t.getText() + "2");
+		}
+	}
+
+	void b3pressed(ActionEvent e) {
+		if (b) {
+			t.setText(null);
+			b = false;
+			t.setText(t.getText() + "3");
+		} else {
+			t.setText(t.getText() + "3");
+		}
+	}
+
+	void b4pressed(ActionEvent e) {
+		if (b) {
+			t.setText(null);
+			b = false;
+			t.setText(t.getText() + "4");
+		} else {
+			t.setText(t.getText() + "4");
+		}
+	}
+
+	void b5pressed(ActionEvent e) {
+		if (b) {
+			t.setText(null);
+			b = false;
+			t.setText(t.getText() + "5");
+		} else {
+			t.setText(t.getText() + "5");
+		}
+	}
+
+	void b6pressed(ActionEvent e) {
+		if (b) {
+			t.setText(null);
+			b = false;
+			t.setText(t.getText() + "6");
+		} else {
+			t.setText(t.getText() + "6");
+		}
+	}
+
+	void b7pressed(ActionEvent e) {
+		if (b) {
+			t.setText(null);
+			b = false;
+			t.setText(t.getText() + "7");
+		} else {
+			t.setText(t.getText() + "7");
+		}
+	}
+
+	void b8pressed(ActionEvent e) {
+		if (b) {
+			t.setText(null);
+			b = false;
+			t.setText(t.getText() + "8");
+		} else {
+			t.setText(t.getText() + "8");
+		}
+	}
+
+	void b9pressed(ActionEvent e) {
+		if (b) {
+			t.setText(null);
+			b = false;
+			t.setText(t.getText() + "9");
+		} else {
+			t.setText(t.getText() + "9");
+		}
+	}
+
+	void bDotpressed(ActionEvent e) {
+		if (!t.getText().contains(".")) {
+			if (b) {
+				t.setText(null);
+				b = false;
+				t.setText(t.getText() + "0.");
+			} else if (t.getText().isEmpty()) {
+				t.setText("0.");
+			} else {
+				t.setText(t.getText() + ".");
+			}
+		}
+	}
+
+	void bPlusPressed(ActionEvent e) {
+		b = true;
+		action = '+';
+		op1 = Double.parseDouble(t.getText());
+
+	}
+
+	void bMinusPressed(ActionEvent e) {
+		b = true;
+		action = '-';
+		op1 = Double.parseDouble(t.getText());
+	}
+
+	void bMulPressed(ActionEvent e) {
+		b = true;
+		action = '*';
+		op1 = Double.parseDouble(t.getText());
+	}
+
+	void bDivPressed(ActionEvent e) {
+		b = true;
+		action = '/';
+		op1 = Double.parseDouble(t.getText());
+	}
+
+	void bEqpressed(ActionEvent e) {
+		op2 = Double.parseDouble(t.getText());
+		doCal();
+	}
+
+	void doCal() {
+		switch (action) {
+		case '+':
+			result = op1 + op2;
+			break;
+		case '-':
+			result = op1 - op2;
+			break;
+		case '*':
+			result = op1 * op2;
+			break;
+		case '/':
+			result = op1 / op2;
+			break;
+		}
+		t.setText(String.valueOf(result));
+	}
+
+	public static void main(String[] args) {
+		new Ex3().setVisible(true);
+	}
+
+	JButton b0;
+	JButton b1;
+	JButton b2;
+	JButton b3;
+	JButton b4;
+	JButton b5;
+	JButton b6;
+	JButton b7;
+	JButton b8;
+	JButton b9;
+	JButton bDot;
+	JButton bPlus;
+	JButton bMinus;
+	JButton bMul;
+	JButton bDiv;
+	JButton bEq;
+	JPanel display;
+	JPanel numpad;
+	JTextField t;
+}
